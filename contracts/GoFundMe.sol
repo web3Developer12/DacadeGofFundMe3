@@ -1,120 +1,109 @@
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.7;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract GoFundMe{
+contract GoFundMe {
 
-    struct campaign_funds {
+    struct CampaignFunds {
         address raiser;
         uint256 amount;
         uint256 timestamp;
     }
 
-    struct campaign {
+    struct Campaign {
         address beneficiary;
         uint256 startDate;
         uint256 endDate;
         uint256 goal;
-        string  category;
-        string  title;
-        string  description;
-        string  web3storage;
-        string  web3storagePath;
+        string category;
+        string title;
+        string description;
+        string cid;
+        string cidPath;
         uint256 fundsRegister;
-        campaign_funds[] funds;
+        CampaignFunds[] funds;
     }
 
-    mapping    (string => campaign) campaigns;
+    mapping (string => Campaign) private campaigns;
+    string[] private titleLedger;
+    address private immutable owner;
 
-    string[]   title_ledger;
-    address    immutable owner;
+    IERC20 private immutable celoToken;
 
-    campaign  _pointer_campaign;
-
-
-    IERC20 private immutable celoToken = IERC20(0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9);
-
-
-    constructor(){
+    constructor(address _celoToken) {
         owner = msg.sender;
+        celoToken = IERC20(_celoToken);
     }
 
-    function exist(string calldata _key) internal view returns(bool){
-        return campaigns[_key].startDate > 0 ? true:false;
+    function exist(string calldata _title) public view returns(bool) {
+        return campaigns[_title].startDate > 0;
     }
 
     function launch(
-        uint256 _goal,string calldata _category,string calldata _title,string calldata _description,string calldata _cid,string calldata _cidPath
-    ) external returns(bool){
-
-        require(exist(_title) == false,"campaign already exist");
-        
-        _pointer_campaign.beneficiary = msg.sender;
-        _pointer_campaign.startDate   = block.number;
-        _pointer_campaign.endDate     = block.number;
-        _pointer_campaign.goal        = _goal;
-        _pointer_campaign.category    = _category;
-        _pointer_campaign.title       = _title;
-        _pointer_campaign.description = _description;
-        _pointer_campaign.web3storage = _cid;
-        _pointer_campaign.web3storagePath = _cidPath;
-
-        campaigns[_title] = _pointer_campaign;
-        title_ledger.push(_title);
-
+        uint256 _goal, string calldata _category, string calldata _title, string calldata _description,
+        string calldata _cid, string calldata _cidPath
+    ) external returns(bool) {
+        require(!exist(_title), "Campaign already exists");
+        Campaign memory campaign = Campaign({
+            beneficiary: msg.sender,
+            startDate: block.timestamp,
+            endDate: block.timestamp,
+            goal: _goal,
+            category: _category,
+            title: _title,
+            description: _description,
+            cid: _cid,
+            cidPath: _cidPath,
+            fundsRegister: 0,
+            funds: new CampaignFunds[](0)
+        });
+        campaigns[_title] = campaign;
+        titleLedger.push(_title);
         return true;
     }
 
-    function contribute(string calldata _title) external payable{
-
-        require(exist(_title) == true,"campaign don't exist");
-        require(msg.value > 0,"amount must be greater than 0");
-        require(
-            (msg.value / (10 ** 18)) > campaigns[_title].goal == false,
-            "amount exceed the campaign goal"
-        );
-
-        celoToken.approve(address(this) ,msg.value);
-        celoToken.transfer(address(this),msg.value);
-        
-        campaign_funds memory donation =  campaign_funds(
-            msg.sender,msg.value,block.number
-        );
-        campaigns[_title].fundsRegister +=1;
-        campaigns[_title].funds.push(donation);
+    function contribute(string calldata _title) external payable {
+        require(exist(_title), "Campaign does not exist");
+        require(msg.value > 0, "Amount must be greater than 0");
+        Campaign storage campaign = campaigns[_title];
+        require(msg.value + campaign.fundsRegister <= campaign.goal, "Amount exceeds the campaign goal");
+        celoToken.transferFrom(msg.sender, address(this), msg.value);
+        CampaignFunds memory donation = CampaignFunds({
+            raiser: msg.sender,
+            amount: msg.value,
+            timestamp: block.timestamp
+        });
+        campaign.fundsRegister += msg.value;
+        campaign.funds.push(donation);
     }
 
-    function claim(string calldata _title) external payable{
-
-        require(exist(_title) == true,"campaign don't exist");
-        require(campaigns[_title].beneficiary == msg.sender,"you are not the beneficiary");
-        require(
-            campaigns[_title].fundsRegister == campaigns[_title].goal,
-            "the goal is not yet achieved"
-        );
-        uint256 _totalRaised = campaigns[_title].fundsRegister;
-        delete campaigns[_title].funds;
-        celoToken.approve(address(this), _totalRaised);
-        celoToken.transferFrom(address(this),campaigns[_title].beneficiary,_totalRaised);
-        
+    function claim(string calldata _title) external {
+        require(exist(_title), "Campaign does not exist");
+        Campaign storage campaign = campaigns[_title];
+        require(campaign.beneficiary == msg.sender, "You are not the beneficiary");
+        require(campaign.fundsRegister == campaign.goal, "The goal has not been achieved");
+        uint256 totalRaised = campaign.fundsRegister;
+        campaign.fundsRegister = 0;
+        for (uint i = 0; i < campaign.funds.length; i++) {
+            celoToken.transfer(campaign.funds[i].raiser, campaign.funds[i].amount);
+        }
+        delete campaign.funds;
     }
 
-    function getKeys() external view returns(string[] memory){
-        return title_ledger;
+    function getKeys() external view returns(string[] memory) {
+        return titleLedger;
     }
 
-    function fetchData(string calldata _key) external view returns(campaign memory){
-        return campaigns[_key];
-    }
-
-    receive() external payable{
-
+    function fetchData(string calldata _title) external view returns(Campaign memory) {
+        return campaigns[_title];
     }
 
     function destroy() external {
-        require(msg.sender == owner);
-        selfdestruct(payable(msg.sender));
+        require(msg.sender == owner, "You are not the owner");
+        selfdestruct(payable(owner));
     }
+
+    receive() external payable {}
 }
