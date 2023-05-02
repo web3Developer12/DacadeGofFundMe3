@@ -1,0 +1,49 @@
+.FourthHero{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding-inline-start:8%;
+}
+.head{
+    font-family:"NunitoBold";
+    font-size:18px;
+    color:gray;
+}
+.sub{
+    font-family:"NunitoExtraBold";
+    font-size:28px;
+}
+.card{
+    display:grid;
+    justify-content: center;
+    align-content: center;
+    grid-auto-flow:row;
+    width:35%;
+    height: 416px;
+    background-color:rgba(128, 128, 128, 0.137);
+    border-radius:12px;
+    margin-right:4%;
+    transition:.3s;
+    cursor: pointer;
+    border:2px solid transparent;
+}
+.card img{
+    width:12vw;
+}
+.card-title{
+    margin-top:8%;
+    text-align:center;
+    font-family:"NunitoBold";
+    font-size:23px;
+
+}
+.card:hover{
+    border:2px solid #02a95c;
+}
+.cardGroup{
+    margin-left:5%;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}

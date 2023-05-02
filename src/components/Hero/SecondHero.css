@@ -1,0 +1,56 @@
+.SecondHero{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:space-between;
+    margin-top:2.2%;
+    margin-bottom:4.2%;
+    margin-inline:12%;
+}
+.SecondHero p:nth-child(1){
+    color:rgb(73, 73, 73);
+    font-family:"NunitoBold";
+
+}
+.SecondHero p:nth-child(2){
+    color: ted;
+    font-family:"NunitoExtraBold";
+    font-size:calc(2em + 1vw);
+
+}
+.cardHero{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:flex-start;
+    height: 154px;
+}
+.cardCounter{
+    background-color:#02a95c;
+    font-family:"NunitoBold";
+    color:white;
+    width: 45px;
+    height: 45px;
+    border-radius:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.cardHeroBottom p:nth-child(1){
+color:black;
+font-size:23px;
+font-family:"NunitoBold";
+
+}
+.cardHeroBottom p:nth-child(2){
+font-size:16px;
+font-family:"NunitoRegular";
+color:gray;
+
+}
+.cardHeroGroup{
+    margin-top:3%;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-column-gap:1%;
+}

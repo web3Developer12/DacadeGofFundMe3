@@ -1,0 +1,27 @@
+.Footer{
+    position:sticky;
+    min-height:14vh;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    border-top:1px solid rgba(128, 128, 128, 0.212);
+    margin-top:3%;
+    padding-inline:8%;
+}
+
+.footer-row{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    font-family:"NunitoRegular";
+    grid-column-gap:4%;
+    width:100%;
+
+}
+.footer-row p:nth-child(2){
+    text-decoration: underline;
+    cursor: pointer;
+    color:black;
+
+}

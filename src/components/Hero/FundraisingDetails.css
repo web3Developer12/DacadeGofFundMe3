@@ -1,0 +1,185 @@
+.FundraisingDetails{
+    padding-inline:8%;
+    margin-top:10%;
+
+}
+.fundraisingDetailsGrid{
+    display:flex;
+    flex-grow:1;
+    flex-direction:column;
+}
+
+.fundraisingBodyTitle{
+    font-family:"NunitoExtraBold";
+    font-size:calc(1em + 1.2vw);
+    margin-bottom:2%;
+}
+
+.fundraisingOrganizer{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding-bottom:1%;
+    font-family:"NunitoRegular";
+    border-bottom:.1px solid rgba(128, 128, 128, 0.39);
+    margin-bottom:2%;
+
+
+
+}
+.fundraisingOrganizer p{
+    font-size:calc(1em + .2vw);
+    margin-left:2%;
+}
+.avatar {
+    min-width:46px;
+    min-height:46px;
+    border-radius:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color:#02a95b44;
+}
+.fundraisingDescription{
+    font-family:"NunitoRegular";
+    text-align:justify;
+    color: #363434;
+    margin-bottom:2%;
+
+
+
+}
+.fundraisingCreationDate{
+    font-family:"NunitoRegular";
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding-top:3%;
+
+    font-family:"NunitoRegular";
+    border-top:.1px solid rgba(128, 128, 128, 0.39);
+
+}
+.raisingBoard{
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   height:100%;
+}
+.security-donation{
+    width:100%;
+    min-height:25%;
+}
+.protection-avatar{
+    height: 56px;
+    width: 56px;
+    background-color:rgba(0, 195, 255, 0.089);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:100%;
+}
+.raising{
+    background-color:white;
+    border-radius:17px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:space-evenly;
+    padding-inline:5%;
+    padding-top:8%;
+    padding-bottom:3%;
+    min-height:345px;
+
+    height:100%;
+    box-shadow: rgba(83, 83, 88, 0.11) 0px 7px 29px 0px;
+    border:1px solid rgba(128, 128, 128, 0.26);
+
+}
+.raising p{
+    font-family:"NunitoRegular";
+    color:gray;
+
+}
+.countAvax{
+    color:black;
+    font-family:"NunitoExtraBold";
+    font-weight: 600;
+    font-size:33px;
+
+}
+.donate{
+    width:100%;
+    height:45px;
+    border-radius:12px;
+    font-family:"NunitoBold";
+    cursor: pointer;
+    border:none;
+    background-color:#ffae00;
+    cursor: pointer;
+    font-size:16px;
+    transition:.2s;
+}
+.donate:hover{
+    background-color:rgba(255, 166, 0, 0.534);
+}
+.input-donation{
+    width:100%;
+    height:75px;
+    border:.1px solid rgba(0, 0, 0, 0.096);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-inline:4%;
+}
+.input-donation p:nth-child(1){
+    text-align:start;
+    font-family:"NunitoExtraBold";
+    color:black;
+    font-size:14px;
+}
+.input-donation input {
+    font-family:"NunitoExtraBold";
+    width:100%;
+    text-align:end;
+    font-size:44px;
+    border:none;
+    outline:none;
+
+}
+.dollar{
+    font-size:24px;
+}
+.inputDecimal{
+    display:flex;
+    align-items:center;
+    justify-content: flex-end;
+    width:100%;
+}
+.inputDecimal p{
+    font-size:44px;
+    font-family:"NunitoExtraBold";
+    color:black;
+
+
+}
+
+.row-fundraising{
+    width:100%;
+    min-height:345px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    grid-column-gap:34px;
+    margin-bottom:2%;
+
+}
+.fundraisingImage{
+
+    width:83%;
+    min-height:345px;
+
+    height:100%;
+    border-radius:23px;
+}

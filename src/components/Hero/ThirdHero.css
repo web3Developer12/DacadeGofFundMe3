@@ -1,0 +1,25 @@
+.ThirdHero{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    margin-top:2.2%;
+    margin-bottom:2.2%;
+    background-color:#1cb36c;
+    padding-inline:12%;
+    padding-top:16%;
+    padding-bottom:16%;
+
+    color:white;
+  }
+
+  .ThirdHero p:nth-child(1){
+    font-family:"NunitoExtraBold";
+    font-size:43px;
+  }
+  .ThirdHero p:nth-child(2){
+    font-family:"NunitoRegular";
+    font-size:calc(1em + 1vw);
+    margin-top:3%;
+  }

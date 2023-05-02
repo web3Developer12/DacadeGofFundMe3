@@ -1,0 +1,244 @@
+.fundraising-create{
+    display:grid;
+    grid-template-columns:35% 1fr;
+    background-color:#fbf8f6;
+    overflow-x:hidden;
+    height:100vh;
+}
+.side-content{
+    display:grid;
+    grid-template-rows:13% 43%;
+    padding-inline:10%;
+}
+.sc-1{
+    font-size:28px;
+    color:#272727;
+}
+.sc-2{
+    margin-top:3%;
+    color:gray;
+
+}
+.scb-text{
+    margin-top:25%;
+}
+.side-content-secondary{
+    width:100%;
+    border-top-left-radius:63px;
+    background-color:white;
+    box-shadow: rgba(83, 83, 88, 0.11) 0px 7px 29px 0px;
+
+}
+
+.side-content-secondary{
+    
+    display:grid;
+    grid-template-rows:13% 1fr 18%;
+
+}
+.side-content-secondary-txt{
+    display:flex;
+    flex-direction:column;
+    padding-inline:8%;
+    padding-top:14%;
+    height:100%;
+    overflow:hidden;
+
+}
+.sc-s-1{
+    font-size:24px;
+    color:#2b2b2b;
+}
+.sc-s-options{
+    margin-top:2%;
+    padding-bottom:4%;
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    grid-column-gap:12px;
+    grid-row-gap:12px;
+    width:42vw;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    scrollbar-color: #02a95b41 transparent;
+    cursor: pointer;
+
+}
+.sc-options{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:51px;
+    border-radius:17px;
+    border:.1px solid rgba(128, 128, 128, 0.315);
+    background-color:transparent;
+    cursor: pointer;
+    font-size:16px;
+    transition:.3s;
+    padding:5px;
+    padding-inline:4%;
+    
+}
+.sc-options-selected{
+    border:.1px solid #02a95bef;
+    background-color:#02a95b2c;
+    border-radius:17px;
+    height:51px;
+    font-size:16px;
+    padding:5px;
+    padding-inline:4%;
+
+
+    transition:.3s;
+
+
+}
+.sc-s-continue{
+    border-top:.1px solid rgba(128, 128, 128, 0.253);
+    width:100%;
+    padding-inline:8%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+}
+.sc-s-previous{
+    width:8%;
+    border-radius:13px;
+    height:52%;
+    border:.1px solid rgba(128, 128, 128, 0.171);
+    background-color:transparent;
+    cursor: pointer;
+    transition:.3s;
+
+}
+.sc-s-previous:hover{
+    background-color:rgba(128, 128, 128, 0.068);
+}
+.sc-s-continue-btn{
+    background-color: #02a95c;
+    color:white;
+    min-height:52%;
+    min-width:18%;
+    border:none;
+    border-radius:13px;
+    cursor: pointer;
+    font-size:16px;
+    box-shadow: rgba(83, 83, 88, 0.171) 0px 7px 29px 0px;
+    transition:.3s;
+}
+.sc-s-continue-btn:hover{
+    background-color: #057943;
+
+}
+
+.input-donation2{
+    margin-top:1.8%;
+    width:70%;
+    height:75px;
+    border:.1px solid rgba(0, 0, 0, 0.096);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-inline:4%;
+}
+.input-donation3{
+    margin-top:1.8%;
+    width:70%;
+    height:75px;
+    border:.1px solid rgba(0, 0, 0, 0.096);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-inline:4%;
+}
+.input-donation4{
+    margin-top:1.8%;
+    height:67%;
+    width:70%;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.input-donation5{
+    display:flex;
+    margin-top:2%;
+}
+.upload{
+    background-color:transparent;
+    border:.1px solid rgba(128, 128, 128, 0.096);
+    padding-inline:2%;
+    border-radius:5px;
+    cursor:pointer;
+    transition:.3s; 
+    font-family:"NunitoRegular";
+    margin-right:1%;
+
+}
+.upload:hover{
+    background-color:#02a95c;
+    color:white;
+}
+.input-donation2 p:nth-child(1){
+    text-align:start;
+    font-family:"NunitoExtraBold";
+    color:black;
+    font-size:14px;
+}
+.input-donation2 input {
+    font-family:"NunitoExtraBold";
+    width:100%;
+    text-align:end;
+    font-size:44px;
+    border:none;
+    outline:none;
+
+}
+.input-donation3 input {
+    font-family:"NunitoRegular";
+
+    width:100%;
+    font-size:17px;
+    border:none;
+    outline:none;
+
+}
+.input-donation4 textarea {
+    height:100%;
+
+    border-radius:12px;
+    resize:none;
+    font-family:"NunitoRegular";
+    width:100%;
+    font-size:17px;
+    border:none;
+    outline:none;
+    border:.1px solid rgba(0, 0, 0, 0.096);
+    padding:5%;
+    color:#252424;
+
+
+}
+.sc-c-min{
+    color:gray;
+    margin-top:2%;
+}
+
+input::file-selector-button {
+    font-weight: bold;
+    color: #02a95c;
+    background-color:transparent;
+    padding: 1em;
+    border: thin solid rgba(128, 128, 128, 0.11);
+    border-radius: 3px;
+    font-family:"NunitoRegular";
+    cursor: pointer;
+    transition:.3s;
+}
+input::file-selector-button:hover{
+    background-color:#02a95c;
+    color:white;
+}

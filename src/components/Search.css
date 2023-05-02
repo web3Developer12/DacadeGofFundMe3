@@ -1,0 +1,203 @@
+.Search {
+    margin-top:8%;
+    height:100%;
+}
+.SearchBarArea{
+    position: sticky;
+    top: 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:67px;
+    background-color:white;
+    z-index:123;
+}
+.SearchBar{
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    background-color:rgba(128, 128, 128, 0.075);
+    padding:8px;
+    border-radius:22px;
+    width: 485px;
+    padding-inline-start:2%;
+}
+.SearchBar input {
+    background-color:transparent;
+    outline:none;
+    border:none;
+    margin-inline:4%;
+    font-family:"NunitoRegular";
+    
+}
+.search-body{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    transition:.3s;
+
+}
+
+.filter {
+    padding:7px;
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    border:.1px solid rgba(0, 0, 0, 0.062);
+    border-radius:22px;
+    font-family:"NunitoRegular";
+    color:gray;
+    font-size:12px;
+    width:23%;
+    transition:.1s;
+    cursor: pointer;
+}
+.filter:hover{
+    background-color:rgba(128, 128, 128, 0.123);
+}
+
+.searchResults{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    grid-row-gap:15%;
+    padding-inline:8%;
+    margin-top:3%;
+}
+.data-campaigns{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    grid-column-gap:2%;
+    margin-bottom:3%;
+    cursor: pointer;
+}
+.campaignBody{
+    width:275px;
+    height: 316px;
+    border-radius:23px;
+    overflow:hidden;
+    cursor: pointer;
+    transition:.3s;
+    border:.1px solid transparent;
+
+}
+.campaignBody:hover{
+    border:.1px solid rgba(128, 128, 128, 0.219);
+}
+.campaignImage{
+    height:54%;
+}
+.campaignImage img {
+    height:91%;
+    object-fit: contain;
+    border-radius:23px;
+}
+.campaignDetails{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:space-between;
+    padding-inline:4%;
+    height:46%;
+}
+.info-campain{
+    display:flex;
+    flex-direction:column;
+    grid-column-gap:5%;
+    width:90%;
+    
+}
+.info-campain p:nth-child(1){
+    font-family:"NunitoBold";
+    font-size:calc(1em + .3vw);
+
+}
+.info-campain  p:nth-child(2){
+    font-family:"NunitoRegular";
+    color:gray;
+    font-size:15px;
+}
+.loader{
+    width:100%;
+    background-color:rgba(128, 128, 128, 0.164);
+    color:transparent;
+    height: 4px;
+    border-radius:12px;
+    overflow:hidden;
+}
+.loader-value{
+    background-color:#02a95c;
+}
+.bottom{
+    width:100%;
+    margin-bottom:12%;
+}
+.bottom p{
+    margin-top:4%;
+}
+.bold{
+    font-family:"NunitoExtraBold";
+    color:black;
+}
+.loadingData{
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    background-color:whitesmoke;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:125;
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+    -webkit-animation-duration: .7s;
+    animation-duration: .7s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+    @-webkit-keyframes fadeInUp {
+    0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 20%, 0);
+    transform: translate3d(0, 20%, 0);
+    }
+    100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+    }
+    }
+    @keyframes fadeInUp {
+    0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 20%, 0);
+    transform: translate3d(0, 20%, 0);
+    }
+    100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+    }
+    } 
+
+
+.data-campaigns .icon{
+    background-color:rgba(128, 128, 128, 0.144);
+    min-width:78px;
+    min-height:78px;
+    border-radius:12px;
+}
+    
+
+.by {
+    margin-bottom:1%;
+}

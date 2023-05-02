@@ -1,0 +1,147 @@
+.navBar{
+    position:fixed;
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    background-color:white;
+    height:62px;
+    width:89%;
+    font-family:"NunitoRegular";
+    margin-top:1%;
+    border-radius:34px;
+    left:0;right:0;top:0;bottom:0;
+    margin:1.1% auto;
+    /*box-shadow: rgba(83, 83, 88, 0.2) 0px 7px 29px 0px;*/
+    transition:.3s;
+    z-index:8;
+  }
+  .navBar img {
+    cursor: pointer;
+  }
+  .search{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px;
+  }
+  .search img{
+    margin-right:2%;
+  }
+  .search:hover{
+    background-color:rgba(0, 0, 0, 0.034);
+    cursor: pointer;
+    border-radius:12px;
+
+  }
+  .navBar-2{
+    position:fixed;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    background-color:white;
+    height:62px;
+    width:100%;
+    font-family:"NunitoRegular";
+    margin-top:0%;
+    left:0;right:0;top:0;bottom:0;
+    margin:0% auto;
+    box-shadow: rgba(83, 83, 88, 0.2) 0px 7px 29px 0px;
+    transition:.3s;
+    z-index:8;
+
+
+  }
+  .horizontal{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    grid-column-gap:8px;
+    color:#2b2b2b;
+    width:100%;
+    padding-inline-start:2%;
+  }
+  .horizontal p{
+    padding:7px;
+  }
+  .horizontal p:hover{
+    background-color:rgba(0, 0, 0, 0.034);
+    cursor: pointer;
+    border-radius:12px;
+  }
+  .horizontal2{
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    grid-column-gap:4px;
+    padding:7px;
+    border-radius:12px;
+  }
+
+
+  .horizontal2:hover{
+    cursor: pointer;
+    background-color:rgba(0, 0, 0, 0.034);
+
+  }
+  .go{
+    height: 37px;
+    width: 184px;
+    border-radius:34px;
+    border:1px solid #02a95c;
+    color:#02a95c;
+    background-color:transparent;
+    cursor: pointer;
+    font-size:15px;
+    font-family:"NunitoExtraBold";
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    transition:.2s;
+
+  
+  }
+  .go:hover{
+    background-color:#02a95b46;
+  }
+  
+  .goActive{
+    height: 37px;
+    width: 184px;
+    border-radius:34px;
+    border:1px solid #02a95c;
+    color:white;
+    background-color:#02a95c;
+    cursor: pointer;
+    font-size:15px;
+
+    font-family:"NunitoExtraBold";
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    transition:.2s;
+  
+  }
+  .goActive:hover{
+    background-color:#02a95b46;
+  }
+  
+
+  .mob,.mobsGroup{
+    display:none;
+  }
+
+  .menu{
+    opacity:.5;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:50%;
+  }

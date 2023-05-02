@@ -1,0 +1,232 @@
+@media screen and (max-width: 616px){
+    .footer-row p:nth-child(1){
+       display:none;
+    }
+}
+@media screen and (max-width: 700px){
+    .SearchBarArea{
+       margin-top:15%;
+    }
+    .searchResults{
+        display:flex;
+        flex-direction:column;
+    }
+    .campaignBody{
+        width:100%;
+    
+    }
+    .campaignImage{
+        width:100%;
+    }
+    .campaignImage img {
+        width:100%;
+        height:40%;
+        object-fit: cover;
+
+    }
+    .campaignDetails{
+        margin-top:5%;
+    }
+    .row-fundraising{
+        flex-direction:column;
+    }
+    .fundraisingImage{
+        width:100%;
+        display:none;
+    }
+    .raisingBoard{
+        height:auto;
+        padding-top:0px;
+        padding-bottom:0px;
+        min-height:275px;
+        margin-top:6%;
+        margin-bottom:6%;
+
+
+     }
+    .raising{
+        padding-top:0px;
+        padding-bottom:0px;
+        margin:0px;
+        height:100%;
+        padding-inline:7%;
+        padding-top:2%;
+        padding-bottom:2%;
+
+
+    }
+    .row-fundraising{
+        height:auto;
+        min-height:275px;
+
+    }
+    .fundraisingOrganizer p{
+        font-size:calc(.9em + .1vw);
+    }
+}
+@media screen and (max-width: 722px){
+    .FirstHero{
+        background:url('/src/assets/mobileBG.png');
+        background-size:cover;
+        background-position-y:100%;
+    }
+
+    
+}
+@media screen and (max-width: 769px){
+    .fundraising-create{
+        display:flex;
+        flex-direction:column;
+    }
+    .fundraising-create{
+        background-color:white;
+    }
+    .side-content{
+        display:flex;
+        flex-direction:column;
+        background-color:white;
+        padding-top:11%;
+    }
+    .sc-1{
+        margin-top:2%;
+        font-family:"NunitoBold";
+    
+    }
+    .sc-2{
+        margin-top:0%;
+    
+    }
+    .scb-text{
+        margin-top:0%;
+    }
+    .side-content-secondary{
+        border-radius:0px;
+        box-shadow:none;
+    }
+    .sc-spacer{
+        display:none;
+    }
+    .side-content-secondary-txt{
+        padding-top:4%;
+        padding-inline:10%;
+        height: calc(15vw + 425px);
+        
+    }
+    .sc-s-options{
+        width:100%;
+    }
+    .sc-s-continue{
+        position:absolute;
+        bottom:0;
+        height: 126px;
+        background-color:white;
+    }
+    
+
+}
+@media screen and (max-width: 960px){
+    .ThirdHero p:nth-child(2){
+        text-align:justify;
+    }
+      .FundraisingDetails{
+
+        margin-top:20%;
+        
+    }
+    .row-fundraising{
+        flex-direction:column;
+    }
+    .fundraisingImage{
+        width:100%;
+    }
+}
+@media screen and (max-width: 1163px)  {
+    .navBar,.navBar-2{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding-inline-start:11%;
+        padding-inline-end:6%;
+
+        border-radius:0px;
+        width:100%;
+        margin-top:0px;
+    }   
+    .mob,.mobsGroup{
+        display:block;
+    }
+    .mobsGroup{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        grid-column-gap:12px;
+    }
+    .mob div{
+        background-color:rgba(0, 0, 0, 0.048);
+        border-radius:7px;
+        transition:.2s;
+    }
+    .mob div:hover{
+        background-color:rgba(0, 0, 0, 0.123);
+    }
+    .logo{
+        width:10%;
+    }
+    
+    .horizontal{
+        display:none;
+    }
+    .cardHeroGroup{
+        grid-template-columns:auto;
+        grid-template-rows:repeat(3,1fr);
+    }
+    .cardHero{
+        grid-row:3 span;
+        margin-top:4%;
+    }
+    .FourthHero{
+        flex-direction:column;
+        align-items:flex-start;
+        padding-inline:8%;
+        margin-top:8%;
+
+    }
+    .SecondHero{
+        margin-top:5.2%;
+    }
+    .cardGroup{
+        flex-direction:column;
+        align-items:flex-start;
+        margin-left:0%;
+    }
+    .card{
+        width:100%;
+        margin-bottom:4%;
+        display:flex;
+        align-items:center;
+        justify-content:flex-start;
+        height: 126px;
+        padding-inline:3%;
+
+    }
+    .card:nth-child(1){
+        margin-top:4%;
+    }
+    .card-title{
+        margin-top:0%;
+    
+    }
+    .SearchBarArea{
+        position:initial;
+        margin-inline:6%;
+    }
+    .SearchBar{
+        padding-inline-start:4%;
+        height:45px;
+
+    }
+    .filter {
+        display:none;
+    }
+
+}
