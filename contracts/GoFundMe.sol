@@ -2,119 +2,113 @@
 
 pragma solidity ^0.8.17;
 
+// Imports the ERC20 token standard from the OpenZeppelin library.
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract GoFundMe{
-
-    struct campaign_funds {
-        address raiser;
-        uint256 amount;
-        uint256 timestamp;
-    }
-
+contract GoFundMe {
+    /*
+        This defines a campaign struct that will store information about 
+        each fundraising campaign launched using the GoFundMe contract.
+    */
     struct campaign {
-        address beneficiary;
-        uint256 startDate;
-        uint256 endDate;
-        uint256 goal;
-        string  category;
-        string  title;
-        string  description;
-        string  web3storage;
+
+        /*The owner of the campaign*/
+        address beneficiary    ;
+        /*The starting date of the campaign*/
+        uint256 startDate      ;
+        /*The ending date of the campaign*/
+        uint256 endDate        ;
+        /*The goal of the campaign*/
+        uint256 goal           ;
+        /*The total celo raised of the campaign*/
+        uint256 celoRaised     ;
+        /*The total donation of the campaign*/
+        uint256 donations      ;
+        /*The category of the campaign*/
+        string  category       ;
+        /*The title of the campaign*/
+        string  title          ;
+        /*The description of the campaign*/
+        string  description    ;
+        /*The link of the cover image in ipfs*/
+        string  web3storage    ;
+        /*The link of the path in ipfs*/
         string  web3storagePath;
-        uint256 fundsRegister;
-        campaign_funds[] funds;
     }
 
-    mapping    (string => campaign) campaigns;
+    /*Mapping from campaign hash to their corresponding campaign struct*/
+    mapping    (bytes32 => campaign) campaigns;
 
-    string[]   title_ledger;
-    address    immutable owner;
+    /*Register hash off all campaings in the blockchain */
+    bytes32[]   private hash_register  ;
+    address     private immutable owner;
 
-    campaign  _pointer_campaign;
+    /*Instance of the CELO-ERC20 token contract.*/
+    IERC20 private immutable ERC = IERC20(0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9);
 
-
-    IERC20 private immutable celoToken = IERC20(0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9);
-
+    bytes32 public lastHash;
 
     constructor(){
+        /*owner of the smart contract*/
         owner = msg.sender;
     }
 
-    function exist(string calldata _key) internal view returns(bool){
-        return campaigns[_key].startDate > 0 ? true:false;
+    /*Check if the campaign already exist*/
+    function exist(bytes32 key) internal view returns(bool){
+        return campaigns[key].startDate > 0 ? true:false;
     }
 
+    /**This function launch new campaign */
     function launch(
-        uint256 _goal,string calldata _category,string calldata _title,string calldata _description,string calldata _cid,string calldata _cidPath
-    ) external returns(bool){
+        uint256 _goal,
+        string memory _category,
+        string memory _title,
+        string memory _description,
+        string memory _cid,
+        string memory _cidPath
+    ) external returns(bytes32){
 
-        require(exist(_title) == false,"campaign already exist");
-        
-        _pointer_campaign.beneficiary = msg.sender;
-        _pointer_campaign.startDate   = block.number;
-        _pointer_campaign.endDate     = block.number;
-        _pointer_campaign.goal        = _goal;
-        _pointer_campaign.category    = _category;
-        _pointer_campaign.title       = _title;
-        _pointer_campaign.description = _description;
-        _pointer_campaign.web3storage = _cid;
-        _pointer_campaign.web3storagePath = _cidPath;
+        bytes   memory encoded = abi.encode(msg.sender,_title,_cid);
+        bytes32 hash = keccak256(encoded);
 
-        campaigns[_title] = _pointer_campaign;
-        title_ledger.push(_title);
+        require(exist(hash) == false,"campaign already exist");
 
-        return true;
+        campaign memory _newCampaign = campaign(
+            msg.sender,block.timestamp,block.timestamp + 22 weeks,
+            _goal,0,0,_category,_title,_description,_cid,_cidPath
+        );
+
+        campaigns[hash] = _newCampaign;
+        lastHash = hash;
+        return hash;
     }
 
-    function contribute(string calldata _title) external payable{
+    /**This function raise a specific campaign */
+    function contribute(bytes32 key) external payable{
 
-        require(exist(_title) == true,"campaign don't exist");
         require(msg.value > 0,"amount must be greater than 0");
+        require(exist(key) == true,"campaign don't exist"    );
         require(
-            (msg.value / (10 ** 18)) > campaigns[_title].goal == false,
+            msg.value > campaigns[key].goal == false,
             "amount exceed the campaign goal"
         );
 
-        celoToken.approve(address(this) ,msg.value);
-        celoToken.transfer(address(this),msg.value);
-        
-        campaign_funds memory donation =  campaign_funds(
-            msg.sender,msg.value,block.number
-        );
-        campaigns[_title].fundsRegister +=1;
-        campaigns[_title].funds.push(donation);
+        ERC.transferFrom(msg.sender,address(this),msg.value);
+        campaigns[key].donations +=1;
     }
 
-    function claim(string calldata _title) external payable{
+    /**This function claim the total celo raised for a campaign */
+    function claim(bytes32 key) external payable{
 
-        require(exist(_title) == true,"campaign don't exist");
-        require(campaigns[_title].beneficiary == msg.sender,"you are not the beneficiary");
+        require(exist(key) == true,"campaign don't exist");
+        require(campaigns[key].beneficiary == msg.sender,"you are not the beneficiary");
         require(
-            campaigns[_title].fundsRegister == campaigns[_title].goal,
+            campaigns[key].celoRaised == campaigns[key].goal,
             "the goal is not yet achieved"
         );
-        uint256 _totalRaised = campaigns[_title].fundsRegister;
-        delete campaigns[_title].funds;
-        celoToken.approve(address(this), _totalRaised);
-        celoToken.transferFrom(address(this),campaigns[_title].beneficiary,_totalRaised);
-        
+        ERC.transferFrom(address(this),campaigns[key].beneficiary,campaigns[key].celoRaised);
     }
 
-    function getKeys() external view returns(string[] memory){
-        return title_ledger;
-    }
+    receive() external payable{}
 
-    function fetchData(string calldata _key) external view returns(campaign memory){
-        return campaigns[_key];
-    }
-
-    receive() external payable{
-
-    }
-
-    function destroy() external {
-        require(msg.sender == owner);
-        selfdestruct(payable(msg.sender));
-    }
 }
